@@ -1,0 +1,43 @@
+run:
+  dir: ./output/run_003
+
+model:
+  path: model.keras
+  type: TinyTables
+  norm_factor: 1.0
+
+output:
+  dir: ml_root
+
+samples:
+  # - name: TTToSemileptonic
+  #   input: ../../dataset/h5_input/140X/TTToSemileptonic_PU200_238k.h5
+  #   output: TTToSemileptonic_ml.root
+  
+  # - name: TTTo2L2Nu
+  #   input: ../../dataset/h5_input/140X/TTTo2L2Nu_PU200_499k.h5
+  #   output: TTTo2L2Nu_ml.root
+
+  # - name: VBFHToInvisible
+  #   input: ../../dataset/h5_input/140X/VBFHToInvisible_PU200_48k.h5
+  #   output: VBFHToInvisible_ml.root
+
+  # - name: QCD
+  #   input: ../../dataset/h5_input/140X/QCD_Pt15To3000_PU200_95k.h5
+  #   output: QCD_ml.root
+
+  - name: SingleNeutrino
+    input: ../../dataset/h5_input/140X/SingleNeutrino_PU200_300k.h5
+    output: SingleNeutrino_ml.root
+
+  - name: TTbar_PU200_300k_151X
+    input: ../../dataset/h5_input/151X/TTbar_PU200_300k_151X.h5
+    output: TTbar_151X_ml.root
+
+  - name: TTToSemileptonic_PU200_300k_151X
+    input: ../../dataset/h5_input/151X/TTToSemileptonic_PU200_300k_151X.h5
+    output: TTToSemileptonic_151X_ml.root
+
+  - name: VBF_HToInvisible_PU200_48k_151X
+    input: ../../dataset/h5_input/151X/VBF_HToInvisible_PU200_48k_151X.h5
+    output: VBF_HToInv_151X_ml.root

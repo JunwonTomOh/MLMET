@@ -1,0 +1,47 @@
+training:
+  input:
+    # - ../../dataset/h5_input/140X/SingleNeutrino_PU200_300k.h5                  # BKG
+    - ../../dataset/h5_input/140X/QCD_Pt15To3000_PU200_95k.h5
+    - ../../dataset/h5_input/140X/WJetsToLNu_PU200_32k.h5
+    - ../../dataset/h5_input/140X/TTbar_PU200_299k.h5
+    - ../../dataset/h5_input/140X/TTToSemileptonic_PU200_238k.h5
+    - ../../dataset/h5_input/140X/TTTo2L2Nu_PU200_499k.h5
+    - ../../dataset/h5_input/140X/VBFHToInvisible_PU200_48k.h5
+
+    - ../../dataset/h5_input/151X/QCD_15_3000_PU200_96k_151X.h5
+    - ../../dataset/h5_input/151X/WJetsToLNu_PU200_34k_151X.h5
+    # - ../../dataset/h5_input/151X/TTbar_PU200_300k_151X.h5                       # TEST
+    # - ../../dataset/h5_input/151X/TTToSemileptonic_PU200_300k_151X.h5            # TEST
+    - ../../dataset/h5_input/151X/TTTo2L2Nu_PU200_500k_151X.h5
+    # - ../../dataset/h5_input/151X/VBF_HToInvisible_PU200_48k_151X.h5             # TEST
+  output: ./output/run_003
+  epochs: 1000
+  batch_size: 1024
+  norm_factor: 1.0
+  model: TinyTables
+
+model_cfg:
+  NUM_PID: 8
+  NUM_ETA: 8
+  NUM_PT: 256
+  D: 2
+
+quantization:
+  enable: true
+  gamma:
+    total_bits: 9
+    integer_bits: 2
+  beta:
+    total_bits: 9
+    integer_bits: 4
+
+gpu:
+  use_gpu: true
+  gpu_index: 0
+  memory_growth: true
+
+callbacks:
+  early_stopping_patience: 30
+  reduce_lr_patience: 4
+  reduce_lr_factor: 0.5
+  min_lr: 1.0e-9
