@@ -15,7 +15,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 
 def make_perfNano_rootfile_from_h5(h5_path, output_path, model, model_type, utils, norm_fac=1.0):
-    print(f"Reading h5: {h5_path}")
+    # print(f"Reading h5: {h5_path}")
 
     if model_type != "TinyTables":
         raise NotImplementedError("Currently only TinyTables is implemented for h5 input.")
@@ -158,7 +158,6 @@ def main():
         print(f"Processing sample: {sample_name}")
         print(f"Input : {input_path}")
         print(f"Output: {output_path}")
-        print("=" * 80)
 
         make_perfNano_rootfile_from_h5(
             h5_path=input_path,

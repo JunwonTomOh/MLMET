@@ -1,0 +1,19 @@
+samples:
+  - name: VBF_HToInvisible
+    input: ../../dataset/root/151X/perfNano_VBF_HToInvisible_15_1_X.root
+    maxevents: -1
+    data: false
+
+  # - name: TTTo2L2Nu_PU200
+  #   input: /path/to/TTTo2L2Nu_PU200.root
+  #   maxevents: 50000
+  #   data: false
+
+  # - name: VBFHToInvisible_PU200
+  #   input: /path/to/VBFHToInvisible_PU200.root
+  #   maxevents: -1
+  #   data: false
+
+settings:
+  maxNPuppi: 128
+  nFeatures: 9

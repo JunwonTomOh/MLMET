@@ -12,7 +12,7 @@ def to_np_array(ak_array, maxN=100, pad=0):
 def read_input(inputfiles):
     import h5py
     for i, fname in enumerate(inputfiles):
-        print("read file", fname)
+        print("Reading file", fname)
         with h5py.File(fname, 'r') as h5f:
             if i == 0:
                 X = h5f['X'][:] # L1 PUPPI Cands
@@ -73,9 +73,9 @@ def preProcessingForTinyTableModel(A, normFac, EVT=None):
     phi = A[:, :, 4:5]
     puppi = A[:, :, 5:6]
 
-    pt[np.where(np.abs(pt > 500/norm))] = 0.
-    px[np.where(np.abs(px > 500/norm))] = 0.
-    py[np.where(np.abs(py > 500/norm))] = 0.
+    # pt[np.where(np.abs(pt > 500/norm))] = 0.
+    # px[np.where(np.abs(px > 500/norm))] = 0.
+    # py[np.where(np.abs(py > 500/norm))] = 0.
 
     # abs_eta = np.abs(eta)
     # eta_idx = np.zeros_like(abs_eta, dtype=np.int32)

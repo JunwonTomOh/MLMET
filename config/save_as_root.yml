@@ -1,5 +1,5 @@
 run:
-  dir: ./output/run_003
+  dir: ./output/run_003_monitor
 
 model:
   path: model.keras
