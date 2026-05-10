@@ -1,0 +1,33 @@
+name: l1metml
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # numerical / ML
+  - numpy
+  - scipy
+  - scikit-learn
+  - h5py
+  - pytables
+  - pandas
+  - pyyaml
+  - tqdm
+
+  # ROOT file I/O without full ROOT
+  - uproot
+  - awkward
+
+  # plotting
+  - matplotlib
+  - mplhep
+
+  # useful
+  - ipython
+  - jupyterlab
+
+  - pip:
+      # TensorFlow CPU package
+      - tensorflow

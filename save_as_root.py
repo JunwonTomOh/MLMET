@@ -5,8 +5,8 @@ import uproot
 import argparse
 import importlib
 import numpy as np
-import tensorflow as tf
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
+import tensorflow as tf
 # print("Built with CUDA:", tf.test.is_built_with_cuda())
 # gpus = tf.config.list_physical_devices('GPU')
 # print(gpus)
@@ -21,7 +21,7 @@ def make_perfNano_rootfile_from_h5(h5_path, output_path, model, model_type, util
         raise NotImplementedError("Currently only TinyTables is implemented for h5 input.")
 
     # Read h5 using training snapshot utils
-    Xorg, Y, Z = utils.read_input([h5_path])
+    Xorg, Y, Z, REF = utils.read_input([h5_path])
 
     # Same preprocessing as training
     X1, X2 = utils.preProcessingForTinyTableModel(Xorg, norm_fac)
@@ -36,11 +36,17 @@ def make_perfNano_rootfile_from_h5(h5_path, output_path, model, model_type, util
     gen_pt = Y[:, 2]
     gen_phi = Y[:, 3]
 
-    # L1/PUPPI MET
+    # L1 PUPPI MET
     l1_px = norm_fac * Z[:, 0]
     l1_py = norm_fac * Z[:, 1]
     l1_pt = Z[:, 2]
     l1_phi = Z[:, 3]
+
+    # CMSSW DeepMET
+    DeepMET_px = norm_fac * REF[:, 0]
+    DeepMET_py = norm_fac * REF[:, 1]
+    DeepMET_pt = REF[:, 2]
+    DeepMET_phi = REF[:, 3]
 
     # ML MET
     print("Running model prediction...")
@@ -71,6 +77,8 @@ def make_perfNano_rootfile_from_h5(h5_path, output_path, model, model_type, util
                 "l1tMETMLMet_phi": "float32",
                 "genMet_pt":       "float32",
                 "genMet_phi":      "float32",
+                "DeepMETMet_pt":       "float32",
+                "DeepMETMet_phi":      "float32",
             },
         )
 
@@ -82,6 +90,8 @@ def make_perfNano_rootfile_from_h5(h5_path, output_path, model, model_type, util
                 "l1tMETMLMet_phi": ml_phi.astype(np.float32),
                 "genMet_pt":       gen_pt.astype(np.float32),
                 "genMet_phi":      gen_phi.astype(np.float32),
+                "DeepMETMet_pt":       DeepMET_pt.astype(np.float32),
+                "DeepMETMet_phi":      DeepMET_phi.astype(np.float32),
             }
         )
 

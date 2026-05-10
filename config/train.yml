@@ -1,32 +1,46 @@
 training:
   input:
-    # - ../../dataset/h5_input/140X/SingleNeutrino_PU200_300k.h5                  # BKG
-    - path: ../../dataset/h5_input/140X/QCD_Pt15To3000_PU200_95k.h5               # Fake MET
-      max_events: -1
-    - path: ../../dataset/h5_input/140X/WJetsToLNu_PU200_32k.h5
-      max_events: -1
-    - path: ../../dataset/h5_input/140X/TTbar_PU200_299k.h5
-      max_events: -1
-    - path: ../../dataset/h5_input/140X/TTToSemileptonic_PU200_238k.h5
-      max_events: -1
-    - path: ../../dataset/h5_input/140X/TTTo2L2Nu_PU200_499k.h5
-      max_events: -1
-    - path: ../../dataset/h5_input/140X/VBFHToInvisible_PU200_48k.h5
-      max_events: -1
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/DYToLL_M50_PTLL200To400_PU200_14_2_X_105k.h5
+      max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/DYToLL_M50_PTLL400To600_PU200_14_2_X_104k.h5
+      max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/DYToLL_M50_PTLL600ToInf_PU200_14_2_X_93k.h5
+      max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/DYToLL_M50_PU200_14_2_X_988k.h5
+      max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/GluGluHHTo2B2Tau_PU200_14_2_X_48k.h5
+      max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/TT_PU200_14_2_X_299k.h5
+      max_events: 48000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/TTTo2L2Nu_PU200_14_2_X_499k.h5
+      max_events: 48000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/TTToSemileptonic_PU200_14_2_X_238k.h5
+      max_events: 48000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/VBFHToInvisible_PU200_14_2_X_48k.h5
+      max_events: 48000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/14_2_X/WJetsToLNu_PU200_14_2_X_32k.h5
+      max_events: 24000
+  
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/DYto2L-2Jets_MLL-50_PTLL-200to400_2J_15_1_X_105k.h5  
+      max_events: 24000
+    # - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/TTTo2L2Nu_15_1_X_500k.h5
+    #   max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/DYto2L-2Jets_MLL-50_PTLL-400to600_2J_15_1_X_100k.h5  
+      max_events: 24000
+    # - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/TTToSemileptonic_15_1_X_300k.h5
+    #   max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/DYto2L-2Jets_MLL-50_PTLL-600_2J_15_1_X_97k.h5        
+      max_events: 24000
+    # - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/VBF_HToInvisible_M-125_15_1_X_48k.h5
+    #   max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/GluGluToHHTo2B2Tau_node_SM_15_1_X_49k.h5             
+      max_events: 24000
+    - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/WJetsToLNu_15_1_X_34k.h5
+      max_events: 24000
+    # - path: /home/junwonoh/data/mlmet_dataset/h5_files/15_1_X/TT_15_1_X_300k.h5
+    #   max_events: 24000
 
-    - path: ../../dataset/h5_input/151X/QCD_15_3000_PU200_96k_151X.h5
-      max_events: -1
-    - path: ../../dataset/h5_input/151X/WJetsToLNu_PU200_34k_151X.h5
-      max_events: -1
-    # - path: ../../dataset/h5_input/151X/TTbar_PU200_300k_151X.h5                       # TEST
-      # max_events: 50000
-    # - path: ../../dataset/h5_input/151X/TTToSemileptonic_PU200_300k_151X.h5            # TEST
-      # max_events: 50000
-    - path: ../../dataset/h5_input/151X/TTTo2L2Nu_PU200_500k_151X.h5
-      max_events: -1
-    # - path: ../../dataset/h5_input/151X/VBF_HToInvisible_PU200_48k_151X.h5             # TEST
-      # max_events: -1
-  output: ./output/run_003_monitor
+  output: ./output/run_32k_MSEmonitor
   epochs: 1000
   batch_size: 512
   norm_factor: 1.0

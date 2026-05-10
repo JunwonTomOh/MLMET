@@ -1,19 +1,106 @@
 samples:
-  - name: VBF_HToInvisible
-    input: ../../dataset/root/151X/perfNano_VBF_HToInvisible_15_1_X.root
-    maxevents: -1
-    data: false
-
-  # - name: TTTo2L2Nu_PU200
-  #   input: /path/to/TTTo2L2Nu_PU200.root
-  #   maxevents: 50000
-  #   data: false
-
-  # - name: VBFHToInvisible_PU200
-  #   input: /path/to/VBFHToInvisible_PU200.root
+  # - name: DYto2L-2Jets_MLL-50_PTLL-200to400_2J_15_1_X
+  #   version: 15_1_X
   #   maxevents: -1
   #   data: false
 
+  # - name: DYto2L-2Jets_MLL-50_PTLL-400to600_2J_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: DYto2L-2Jets_MLL-50_PTLL-600_2J_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: GluGluToHHTo2B2Tau_node_SM_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: TT_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: TTTo2L2Nu_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: TTToSemileptonic_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: VBF_HToInvisible_M-125_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: WJetsToLNu_15_1_X
+  #   version: 15_1_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: DYToLL_M50_PTLL200To400_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: DYToLL_M50_PTLL400To600_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: DYToLL_M50_PTLL600ToInf_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: DYToLL_M50_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: GluGluHHTo2B2Tau_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: TT_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: TTTo2L2Nu_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: TTToSemileptonic_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: VBFHToInvisible_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  # - name: WJetsToLNu_PU200_14_2_X
+  #   version: 14_2_X
+  #   maxevents: -1
+  #   data: false
+
+  - name: SingleNeutrino_PU200_14_2_X
+    version: 14_2_X
+    maxevents: -1
+    data: false
+
 settings:
+  input_dir: ~/data/mlmet_dataset/root/
+  out_dir: /home/junwonoh/data/mlmet_dataset/h5_files/
   maxNPuppi: 128
   nFeatures: 9

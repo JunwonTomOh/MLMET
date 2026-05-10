@@ -10,8 +10,8 @@ import h5py
 from utils import to_np_array
 
 
-def convertNanoToHDF5(input_path, evt_name, maxevents=-1, is_data=False,):
-    if input_path == '':
+def convertNanoToHDF5(input_dir, out_dir, evt_name, version, maxevents=-1, is_data=False,):
+    if evt_name == '':
         sys.exit('Need to specify input and output files!')
 
     ##
@@ -56,9 +56,9 @@ def convertNanoToHDF5(input_path, evt_name, maxevents=-1, is_data=False,):
 
 
     if not is_data:
-        varList = varList + varList_mc +l1met_list
+        varList = varList + varList_mc +l1met_list + cmssw_ml_list
 
-    upfile = uproot.open(input_path)
+    upfile = uproot.open(f"{input_dir}{version}/perfNano_{evt_name}.root")
 
     if maxevents > 0:
         tree = upfile["Events"].arrays(varList, entry_stop=maxevents)
@@ -109,27 +109,28 @@ def convertNanoToHDF5(input_path, evt_name, maxevents=-1, is_data=False,):
     Z[:, 2] += tree[l1met_list[0]].to_numpy()
     Z[:, 3] += tree[l1met_list[1]].to_numpy()
 
-    # # CMSSW DeepMET info
-    # REF = np.zeros(shape=(maxEntries, 4), dtype=float, order='F')
-    # REF[:, 0] += tree[cmssw_ml_list[0]].to_numpy() * np.cos(tree[cmssw_ml_list[1]].to_numpy()) # CMSSW DeepMET px
-    # REF[:, 1] += tree[cmssw_ml_list[0]].to_numpy() * np.sin(tree[cmssw_ml_list[1]].to_numpy()) # CMSSW DeepMET py
-    # REF[:, 2] += tree[cmssw_ml_list[0]].to_numpy()
-    # REF[:, 3] += tree[cmssw_ml_list[1]].to_numpy()
+    # CMSSW DeepMET info
+    REF = np.zeros(shape=(maxEntries, 4), dtype=float, order='F')
+    REF[:, 0] += tree[cmssw_ml_list[0]].to_numpy() * np.cos(tree[cmssw_ml_list[1]].to_numpy()) # CMSSW DeepMET px
+    REF[:, 1] += tree[cmssw_ml_list[0]].to_numpy() * np.sin(tree[cmssw_ml_list[1]].to_numpy()) # CMSSW DeepMET py
+    REF[:, 2] += tree[cmssw_ml_list[0]].to_numpy()
+    REF[:, 3] += tree[cmssw_ml_list[1]].to_numpy()
 
-    if "15_1_X" in input_path:
-        tag = "_151X"
-    elif "14_2_X" in input_path:
-        tag = "_142X"
-    else:
-        tag = ""
+    # if "15_1_X" in input_path:
+    #     tag = "_151X"
+    # elif "14_2_X" in input_path:
+    #     tag = "_142X"
+    # else:
+    #     tag = ""
 
-    outname = f"{evt_name}_PU200_{maxEntries//1000}k{tag}.h5"
+    outname = f"{out_dir}{version}/{evt_name}_{maxEntries//1000}k.h5"
+    print(f"Saved: {outname}")
 
     with h5py.File(outname, 'w') as h5f:
         h5f.create_dataset('X',    data=X,   compression='lzf')
         h5f.create_dataset('Y',    data=Y,   compression='lzf')
         h5f.create_dataset('Z',    data=Z,   compression='lzf')
-        # h5f.create_dataset('REF',    data=REF,   compression='lzf')
+        h5f.create_dataset('REF',    data=REF,   compression='lzf')
 
 
 
@@ -143,14 +144,19 @@ def main():
 
     for sample in cfg["samples"]:
         evt_name = sample.get("name", "unknown")
-        input_path = sample["input"]
+        version = sample.get("version", "unknown")
         maxevents = sample.get("maxevents", -1)
         is_data = sample.get("data", False)
+        
+        input_dir = cfg["settings"].get("input_dir", "~/data/mlmet_dataset/root/")
+        out_dir = cfg["settings"].get("out_dir", "~/data/mlmet_dataset/h5_files/")
 
         print(f"\nProcessing sample: {evt_name}")
         convertNanoToHDF5(
-            input_path=input_path,
+            input_dir=input_dir,
+            out_dir=out_dir,
             evt_name=evt_name,
+            version=version,
             maxevents=maxevents,
             is_data=is_data,
         )

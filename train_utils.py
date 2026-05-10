@@ -55,7 +55,7 @@ def load_h5_inputs(input_cfg):
         print(f"  files: {len(files)}")
         print(f"  max_events: {max_events}")
 
-        X, Y, Z = read_input(files)
+        X, Y, Z, REF = read_input(files)
 
         if max_events is not None and max_events > 0:
             X = X[:max_events]

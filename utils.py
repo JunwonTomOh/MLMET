@@ -15,24 +15,26 @@ def read_input(inputfiles):
         print("Reading file", fname)
         with h5py.File(fname, 'r') as h5f:
             if i == 0:
-                X = h5f['X'][:] # L1 PUPPI Cands
-                Y = h5f['Y'][:] # Gen MET
-                Z = h5f['Z'][:] # L1T MET
+                X = h5f['X'][:]     # L1 PUPPI Cands
+                Y = h5f['Y'][:]     # Gen MET
+                Z = h5f['Z'][:]     # L1T MET
+                REF = h5f['REF'][:] # CMSSW DeepMET
             else:
                 X = np.concatenate((X, h5f['X']), axis=0)
                 Y = np.concatenate((Y, h5f['Y']), axis=0)
                 Z = np.concatenate((Z, h5f['Z']), axis=0)
+                REF = np.concatenate((REF, h5f['REF']), axis=0)
     print("finish reading files")
-    return X, Y, Z
+    return X, Y, Z, REF
 
 
-def convertXY2PtPhi(arrayXY):
-    # convert from array with [:,0] as X and [:,1] as Y to [:,0] as pt and [:,1] as phi
-    nevents = arrayXY.shape[0]
-    arrayPtPhi = np.zeros((nevents, 2))
-    arrayPtPhi[:, 0] = np.sqrt((arrayXY[:, 0]**2 + arrayXY[:, 1]**2))
-    arrayPtPhi[:, 1] = np.arctan2(arrayXY[:, 1], arrayXY[:, 0])
-    return arrayPtPhi
+# def convertXY2PtPhi(arrayXY):
+#     # convert from array with [:,0] as X and [:,1] as Y to [:,0] as pt and [:,1] as phi
+#     nevents = arrayXY.shape[0]
+#     arrayPtPhi = np.zeros((nevents, 2))
+#     arrayPtPhi[:, 0] = np.sqrt((arrayXY[:, 0]**2 + arrayXY[:, 1]**2))
+#     arrayPtPhi[:, 1] = np.arctan2(arrayXY[:, 1], arrayXY[:, 0])
+#     return arrayPtPhi
 
 
 def preProcessing(A, normFac, EVT=None):
